@@ -44,16 +44,13 @@ void setup()
 }
 
 
-//make robot stand up
+//make robot Transforme
 BLYNK_WRITE(V1)
 {
   int pinData = param.asInt();
   //if value is 1 , make robot stand up. Or make robot sit down
   if (pinData == 1) {
-    for (int a = 0; a <= 8; a++) {
-      myservo[a].write(90);
-    }
-    delay(100);//let motor have enough time to rotate
+    stand();
   }
   else {
     myservo[0].write(180);
@@ -65,6 +62,76 @@ BLYNK_WRITE(V1)
     }
     delay(100);//let motor have enough time to rotate
   }
+}
+
+// BLYNK_WRITE(V2)
+// {
+//   int pinData = param.asInt();
+//   //if value is 1 , make robot stand up. Or make robot sit down
+//   if (pinData == 1) {
+//
+//     //step 1
+//     myservo[0].write(60);
+//     myservo[6].write(60);
+//     myservo[1].write(90);
+//     myservo[2].write(90);
+//     myservo[3].write(90);
+//     myservo[4].write(90);
+//     myservo[5].write(90);
+//     myservo[7].write(90);
+//     delay(100);//let motor have enough time to rotate
+//
+//     //step2
+//     myservo[1].write(150);
+//     myservo[0].write(90);
+//
+//     myservo[5].write(150);
+//     myservo[4].write(90);
+//
+//     myservo[3].write(30);
+//     myservo[2].write(90);
+//
+//     myservo[7].write(30);
+//     myservo[8].write(90);
+//     delay(100);
+//
+//     //step3
+//     myservo[2].write(120);
+//     myservo[4].write(120);
+//     myservo[0].write(90);
+//     myservo[1].write(90);
+//     myservo[3].write(90);
+//     myservo[5].write(90);
+//     myservo[6].write(90);
+//     myservo[7].write(90);
+//     delay(100);
+//
+//     //step4
+//     myservo[1].write(30);
+//     myservo[0].write(90);
+//
+//     myservo[5].write(30);
+//     myservo[4].write(90);
+//
+//     myservo[3].write(150);
+//     myservo[2].write(90);
+//
+//     myservo[7].write(150);
+//     myservo[6].write(90);
+//     delay(100);
+//   }
+//   else{
+//     stand();
+//   }
+// }
+
+
+//make robot stand up
+void stand(){
+  for (int a = 0; a <= 8; a++) {
+    myservo[a].write(90);
+  }
+  delay(100);//let motor have enough time to rotate
 }
 
 void loop()
