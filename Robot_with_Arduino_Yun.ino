@@ -53,14 +53,17 @@ BLYNK_WRITE(V1)
     for (int a = 0; a <= 8; a++) {
       myservo[a].write(90);
     }
+    delay(100);//let motor have enough time to rotate
   }
   else {
-    for (int a = 0; a <= 7; a += 2) {
-      myservo[a].write(0);
-    }
+    myservo[0].write(180);
+    myservo[6].write(180);
+    myservo[4].write(0);
+    myservo[2].write(0);
     for (int a = 1; a <= 7; a += 2) {
       myservo[a].write(90);
     }
+    delay(100);//let motor have enough time to rotate
   }
 }
 
