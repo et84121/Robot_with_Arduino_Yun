@@ -18,7 +18,7 @@
    Feel free to apply it to any other example. It's simple!
 
  **************************************************************/
-
+#define servo_delay_time 500
 #define BLYNK_PRINT Serial    // Comment this out to disable prints and save space
 #include <Bridge.h>
 #include <BlynkSimpleYun.h>
@@ -44,6 +44,7 @@ void setup()
 }
 
 
+
 //make robot Transforme
 BLYNK_WRITE(V1)
 {
@@ -60,7 +61,7 @@ BLYNK_WRITE(V1)
     for (int a = 1; a <= 7; a += 2) {
       myservo[a].write(90);
     }
-    delay(100);//let motor have enough time to rotate
+    delay(servo_delay_time);//let motor have enough time to rotate
   }
 }
 
@@ -70,68 +71,56 @@ BLYNK_WRITE(V1)
    //if value is 1 , make robot stand up. Or make robot sit down
    if (pinData == 1) {
 
-     //step 1
+	 //step 1
+		//lift foot
      myservo[0].write(60);
-     myservo[6].write(60);
-     myservo[1].write(90);
-     myservo[2].write(90);
-     myservo[3].write(90);
-     myservo[4].write(90);
-     myservo[5].write(90);
-     myservo[7].write(90);
-     delay(100);//let motor have enough time to rotate
+	 myservo[6].write(60);
+		//前轉腳
+	 myservo[1].write(30);
+	 myservo[7].write(150);
+     delay(servo_delay_time);//let motor have enough time to rotate
 
-     //step2
-     myservo[1].write(150);
-     myservo[0].write(90);
+	 //step 2
+	 myservo[0].write(90);
+	 myservo[6].write(90);
+	 delay(servo_delay_time);//let motor have enough time to rotate
 
-     myservo[5].write(150);
-     myservo[4].write(90);
+	 //step 3
+	 myservo[1].write(90);
+	 myservo[7].write(90);
+	 delay(servo_delay_time);//let motor have enough time to rotate
 
-     myservo[3].write(30);
-     myservo[2].write(90);
 
-     myservo[7].write(30);
-     myservo[8].write(90);
-     delay(100);
+	 //step 1
+		//lift foot
+	 myservo[2].write(120);
+	 myservo[4].write(120);
+		//前轉腳
+	 myservo[3].write(30);
+	 myservo[5].write(150);
+	 delay(servo_delay_time);//let motor have enough time to rotate
+	
+	 //step 2
+	 myservo[2].write(90);
+	 myservo[4].write(90);
+	 delay(servo_delay_time);//let motor have enough time to rotate
 
-     //step3
-     myservo[2].write(120);
-     myservo[4].write(120);
-     myservo[0].write(90);
-     myservo[1].write(90);
-     myservo[3].write(90);
-     myservo[5].write(90);
-     myservo[6].write(90);
-     myservo[7].write(90);
-     delay(100);
-
-     //step4
-     myservo[1].write(30);
-     myservo[0].write(90);
-
-     myservo[5].write(30);
-     myservo[4].write(90);
-
-     myservo[3].write(150);
-     myservo[2].write(90);
-
-     myservo[7].write(150);
-     myservo[6].write(90);
-     delay(100);
+	 //step 3
+	 myservo[3].write(90);
+	 myservo[5].write(90);
+	 delay(servo_delay_time);//let motor have enough time to rotate
    }
    else{
      stand();
    }
  }
-
-
+ 
 //make robot stand up
 void stand(){
   for (int a = 0; a <= 8; a++) {
     myservo[a].write(90);
   }
-  delay(100);//let motor have enough time to rotate
+  delay(servo_delay_time);//let motor have enough time to rotate
 }
 
 void loop()
